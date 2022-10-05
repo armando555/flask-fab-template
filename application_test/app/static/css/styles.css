@@ -1,0 +1,13 @@
+.flex-container {
+    flex-wrap: wrap;
+}
+
+.text-centered {
+  vertical-align: middle !important;
+  text-align: center;
+  float: none;
+}
+
+table.fixed {
+  table-layout: fixed;
+}
