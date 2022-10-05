@@ -13,7 +13,6 @@ os.environ['ADMIN_EMAIL'] = 'armando.rios@twelve.net.co'
 SECRET_KEY = "\2\1thisismyscretkey\1\2\e\y\y\h"
 
 # The SQLAlchemy connection string.
-# The SQLAlchemy connection string.
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 if os.environ.get('MYSQL_PASSWORD', None):
     #  This is a example to use ssl certificate
@@ -22,12 +21,15 @@ if os.environ.get('MYSQL_PASSWORD', None):
     #        'ssl_ca': basedir+"/aws_skysql_chain.pem"
     #    }
     #}
-    #SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(basedir, "app.db")
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://{}:{}@{}:{}/{}'.format(
-    os.environ["MYSQL_USER"], os.environ["MYSQL_PASSWORD"], os.environ["MYSQL_HOST"], os.environ["MYSQL_PORT"], os.environ["MYSQL_DATABASE"])
+    if os.environ.get('MYSQL_PORT', None):
+        SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://{}:{}@{}:{}/{}'.format(
+        os.environ["MYSQL_USER"], os.environ["MYSQL_PASSWORD"], os.environ["MYSQL_HOST"], os.environ["MYSQL_PORT"], os.environ["MYSQL_DATABASE"])
+    else:
+        SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://{}:{}@{}/{}'.format(
+        os.environ["MYSQL_USER"], os.environ["MYSQL_PASSWORD"], os.environ["MYSQL_HOST"], os.environ["MYSQL_DATABASE"])
+
 else:
-    #SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(basedir, "app.db")
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://{}:{}@{}:{}/{}'.format("root", "root", "localhost", "33061", "tiwala_test")
+    SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(basedir, "app.db")
 
 # Flask-WTF flag for CSRF
 CSRF_ENABLED = True

@@ -1,5 +1,19 @@
 version: "3"
 services:
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'db_test'
+      MYSQL_USER: 'user1'
+      MYSQL_PASSWORD: 'user1'
+      MYSQL_ROOT_PASSWORD: 'root'
+    ports:
+      - '33061:3306'
+    expose:
+      - 33061
+    volumes:
+      - my-db:/var/lib/mysql
   web:
     build: .
     restart: always
@@ -7,46 +21,15 @@ services:
       - "3443:3443"
     volumes:
       - ./:/usr/src/app
-    container_name: flask-app
     environment:
       MYSQL_DATABASE: 'db_test'
-      # So you don't have to use root, but you can if you like
-      MYSQL_USER: 'user1'
-      # You can use whatever password you like
-      MYSQL_PASSWORD: 'user1'
-      # Password for root access
-      MYSQL_ROOT_PASSWORD: 'root'
-      MYSQL_PORT: '33061'
-    depends_on:
-      - db
+      MYSQL_USER: 'root'
+      MYSQL_PASSWORD: 'root'
+      MYSQL_HOST: 'db'
+      # PORT IT'S OPTIONAL, IN THIS CASE IS COMMENT BECAUSE WE ARE CONNECTING IT WITH DOCKER NETWORK
+      #MYSQL_PORT: '33061'
     links:
-      - db
-    networks:
-      - mysql-flask-app-network
-  db:
-    image: mysql:5.7
-    restart: always
-    container_name: mysql-db
-    environment:
-      MYSQL_DATABASE: 'db_test'
-      # So you don't have to use root, but you can if you like
-      MYSQL_USER: 'user1'
-      # You can use whatever password you like
-      MYSQL_PASSWORD: 'user1'
-      # Password for root access
-      MYSQL_ROOT_PASSWORD: 'root'
-    ports:
-      # <Port exposed> : < MySQL Port running inside container>
-      - '33061:3306'
-    expose:
-      - 33061
-    volumes:
-      - my-db:/var/lib/mysql
-  
-    
-networks:
-  mysql-flask-app-network:
-    name: mysql-flask-app-network
+      - "db:database"
 volumes:
   my-db:
     
