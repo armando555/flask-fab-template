@@ -84,7 +84,9 @@ docker compose up -d
 ```
 
 ## to stop all the services
+```bash
 docker compose down
+```
 
 
 
