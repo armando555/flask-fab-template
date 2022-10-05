@@ -3,12 +3,9 @@ FROM ubuntu:20.04
 WORKDIR /usr/src/app
 
 RUN apt-get update && \
-    apt-get install -yq tzdata software-properties-common && \
+    apt-get install -yq tzdata && \
     ln -fs /usr/share/zoneinfo/America/Bogota /etc/localtime && \
     dpkg-reconfigure -f noninteractive tzdata
-RUN add-apt-repository 'deb http://archive.ubuntu.com/ubuntu bionic main' 
-RUN apt-get update && \
-    apt-get install -y python3-mysqldb
 
 RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt update -y
 RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt install -y python3 python3-pip 

@@ -1,10 +1,5 @@
-# Tiwala
-
-## Made by: 
-Twelve Network
-
 ## Authors:
-- Armando Rios (armando.rios@twelve.net.co)
+- Armando Rios (armandosebas4@gmail.com)
 
 
 ## Coding rules
@@ -20,9 +15,9 @@ Run
 python3 -m pip install virtualenv
 ```
 ### Create virtual environment
-Change directory into `tiwala`.
+Change directory into `application_test`.
 ```bash
-cd tiwala
+cd application_test
 ```
 Run
 ```bash
@@ -54,7 +49,7 @@ __Warning:__ Use this only for testing, it runs as a development server and may 
 flask seed_db
 ```
 
-## in repo.tiwala/tiwala
+## inside the folder application test
 ```bash
 export FLASK_APP=app
 python3 -m flask run --port 7000
@@ -75,6 +70,23 @@ ya una vez actualziada la BD el proceso es simple, se cambia un modelo y se hace
 ```bash
 flask db stamp head
 ```
+
+# DOCKER COMPOSE
+This template has a docker compose file to build all the application
+
+
+as all the services are in the same network(Docker network default) we can connect very easy the database
+
+
+## To run the docker compose
+```bash
+docker compose up -d
+```
+
+## to stop all the services
+docker compose down
+
+
 
 # download mysql docker image and stop services of mysql
 ```bash
