@@ -36,6 +36,10 @@ CSRF_ENABLED = True
 # FLASK SWAGGER
 FAB_API_SWAGGER_UI = True
 
+#CACHE REDIS
+REDIS_HOST="redis"
+
+
 # ------------------------------
 # GLOBALS FOR APP Builder
 # ------------------------------

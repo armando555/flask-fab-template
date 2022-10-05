@@ -1,7 +1,8 @@
 ## Authors:
 - Armando Rios (armandosebas4@gmail.com)
 
-
+## NOTES IMPORTANT RESPECT ABOUT DB INIT
+The db init is using a email admin that is declarated in the config file. So, is very important that when you use flask fab create-admin command you have to change the admin email from de config file.
 ## Coding rules
 - Do not create more than one class per file, unless it is really needed.
 - Follow PEP 8 https://www.python.org/dev/peps/pep-0008/ (install a code linter and an autoformater like pylance)

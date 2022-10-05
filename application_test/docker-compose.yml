@@ -30,6 +30,9 @@ services:
       #MYSQL_PORT: '33061'
     links:
       - "db:database"
+      - "redis:redis-cache"
+  redis:
+    image: redis:alpine
 volumes:
   my-db:
     
