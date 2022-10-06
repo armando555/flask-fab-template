@@ -7,9 +7,7 @@ from flask import redirect
 
 
 class AuthHelperAPI(BaseApi):
-    apispec_parameter_schemas = {
-        "greeting_schema": "kagsdas"
-    }
+
 
 
     @expose('/current_user/', methods=['POST'])
@@ -18,8 +16,6 @@ class AuthHelperAPI(BaseApi):
         """Send a greeting
         ---
         post:
-          parameters:
-            - $ref: '#/components/parameters/greeting_schema'
           responses:
             200:
               description: Get Id from the current user
