@@ -4,9 +4,11 @@ from flask_babel import gettext as __
 from app.models import CustomUser
 from flask import request
 import json
+from app.api.utils.cached_model_rest_api import CachedModelRestApiDefault
+from app import cache
 
 
-class CustomUserRestAPI(ModelRestApi):
+class CustomUserRestAPI(CachedModelRestApiDefault):
     resource_name = __('ab_user')
     datamodel = SQLAInterface(CustomUser)
 

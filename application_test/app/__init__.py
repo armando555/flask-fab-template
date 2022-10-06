@@ -9,6 +9,7 @@ from flask_cors import CORS
 import click
 from flask.cli import with_appcontext
 import redis
+from flask_caching import Cache
 
 """
  Logging configuration
@@ -20,6 +21,7 @@ logging.getLogger().setLevel(logging.DEBUG)
 app = Flask(__name__)
 app.config.from_object("config")
 cache_redis = redis.Redis(host=app.config["REDIS_HOST"],port=6379)
+cache = Cache(app)
 db = SQLA(app)
 cors = CORS(app)
 migrate = Migrate(app, db)

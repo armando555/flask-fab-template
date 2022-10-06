@@ -38,6 +38,8 @@ FAB_API_SWAGGER_UI = True
 
 #CACHE REDIS
 REDIS_HOST="redis"
+CACHE_TYPE="SimpleCache"
+CACHE_DEFAULT_TIMEOUT=300
 
 
 # ------------------------------

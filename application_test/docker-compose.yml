@@ -3,6 +3,7 @@ services:
   db:
     image: mysql
     restart: always
+    container_name: mysql-db
     environment:
       MYSQL_DATABASE: 'db_test'
       MYSQL_USER: 'user1'
@@ -17,6 +18,7 @@ services:
   web:
     build: .
     restart: always
+    container_name: flask-app
     ports:
       - "3443:3443"
     volumes:
@@ -25,7 +27,7 @@ services:
       MYSQL_DATABASE: 'db_test'
       MYSQL_USER: 'root'
       MYSQL_PASSWORD: 'root'
-      MYSQL_HOST: 'db'
+      MYSQL_HOST: 'database'
       # PORT IT'S OPTIONAL, IN THIS CASE IS COMMENT BECAUSE WE ARE CONNECTING IT WITH DOCKER NETWORK
       #MYSQL_PORT: '33061'
     links:
